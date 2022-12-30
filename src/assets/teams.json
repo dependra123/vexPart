@@ -1,0 +1,32 @@
+{
+    "Teams":{
+        "team1":{
+            "name":"Team 1",
+            "routeID" : "team1",
+            "members":[
+                {
+                    "name":"Player 1",
+                    "email":"example@gmail.com"
+                },
+                {
+                    "name":"Player 2",
+                    "email":"example@gmail.com"
+                }
+            ]
+        },
+        "team2":{
+            "name":"Team 2",
+            "routeID": "team2",
+            "members":[
+                {
+                    "name":"Player 3",
+                    "email":"example@gmail.com"
+                },
+                {
+                    "name":"Player 4",
+                    "email":"example@gmail.com"
+                }
+            ]
+        }
+     }
+}
