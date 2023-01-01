@@ -67,9 +67,9 @@ function PartSignOut() {
                 {feildsArray.map((feild, index) =>
                   <motion.span key={index} animate={{y:-5}} transition={{type:'spring', damping:'7'}} initial={{y:-5,opacity:0.2}} whileInView={{y:0, opacity:1}} className="feildSpan">
                     <motion.button onClick={handleRemove} style={{scale:0.6, borderRadius:60, background:'#B0272B'}} className="material-symbols-outlined" whileHover={{scale:.8, borderRadius:90, background:'#FF0000'}} whileTap={{scale:.5}}>
-                        close
+                        close 
                     </motion.button>
-                    {feild}
+                    {feild} {index}
                 </motion.span>)}
             </motion.div>
             
