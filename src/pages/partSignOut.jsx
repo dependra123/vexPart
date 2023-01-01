@@ -7,15 +7,28 @@ import { Link } from 'react-router-dom';
 // make a functions that will handle the input feilds
 
 const signOutInput = () => {
-    let infoFilled = false;
+    //check if the input feilds are empty and if they are, set a red border
+    let inputFeildCorrect = false;
+    let count = 0;
+    const handleChange = (e) => {
+        // check if user is done typing
+        if(e.target.value.length > 0){
+            count++;
+        }
+        if(count > 4){
+            inputFeildCorrect = true;
+        }
+    }
+
+    
     return (
         
-            <motion.div className="signOut" >
-                <input type="text" placeholder="Part Name" />
+            <motion.form className="signOut" >
+                <input type="text" placeholder="Part Name" onChange={handleChange}/>
                 <input type="text" placeholder="Part Size"/>
                 <input type="text" placeholder="Part Amount"/>
                 <input type="text" placeholder="Initials"/>
-            </motion.div>
+            </motion.form>
     );
 };
 
