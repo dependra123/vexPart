@@ -7,7 +7,7 @@ import * as data from '../assets/teams.json';
 
 
 function Home() {
-    const [dropName, setDropName] = useState('Select a drop');
+    const [dropName, setDropName] = useState('Select a Team');
     const [isOpen, setIsOpen] = useState(false);
     const[show, setShow] = useState(false);
     const [teams, setTeams]= useState([]);
