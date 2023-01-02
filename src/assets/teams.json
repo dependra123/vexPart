@@ -27,6 +27,20 @@
                     "email":"example@gmail.com"
                 }
             ]
+        },
+        "team3":{
+            "name":"Team 3",
+            "routeID": "team2",
+            "members":[
+                {
+                    "name":"Player 5",
+                    "email":"example@gmail.com"
+                },
+                {
+                    "name":"Player 6",
+                    "email":"example@gmail.com"
+                }
+            ]
         }
      }
 }

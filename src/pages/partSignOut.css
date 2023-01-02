@@ -55,6 +55,10 @@ h2{
     transition: 0.5s;
     border: 2px solid #B3C5D7;
 }
+.signOut button{
+    position: relative;
+    
+}
 /* make last input smaller */
 .signOut input[type=text]:nth-last-child(1){
     width: 5%;
