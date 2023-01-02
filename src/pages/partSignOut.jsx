@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 // make a functions that will handle the input feilds
 
 const signOutInput = (index) =>{
-    const[verifed, setVerifed] = useState(false);
-    const [showVerfiy, setShowVerfiy] = useState(false);
+    //const[verifed, setVerifed] = useState(false);
+    //const [showVerfiy, setShowVerfiy] = useState(false);
     
     return (
         
@@ -23,12 +23,12 @@ const signOutInput = (index) =>{
                 }}>
                     done
                 </motion.button>
-                {showVerfiy ? 
+                {/*showVerfiy ? 
                     <motion.div className="verify" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
-                        {/* ask for password and username */}
+                        {/* ask for password and username }
                         <input type="text" placeholder="Username"/>
                     </motion.div>
-                 :null}
+                 :null*/}
             </motion.form>
             
     );
@@ -73,7 +73,7 @@ function PartSignOut() {
             <motion.button  className="material-symbols-outlined" style={{background:'green',scale:.75,  y:-100, borderRadius:90}} whileHover={{scale:1.1}} whileTap={{scale:0.85}} onClick={handleClick}>Add</motion.button>
             <motion.div className='feildContainder' >
                 {feildsArray.map((feild, index) =>
-                  <motion.span key={index} animate={{y:-5}} transition={{type:'spring', damping:'7'}} initial={{y:-5,opacity:0.2}} whileInView={{y:0, opacity:1}} className="feildSpan">
+                  <motion.span key={index} animate={{y:-5}} transition={{type:'spring', damping:'7'}} initial={{y:-5,opacity:0.2}} whileInView={{y:0, opacity:1}} exit={{opacity:0}} className="feildSpan">
                     <motion.button onClick={() =>{
                         handleRemove(index);
                         console.log("index: "+ index.toString());
