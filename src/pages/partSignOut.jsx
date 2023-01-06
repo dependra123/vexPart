@@ -3,59 +3,40 @@ import { useParams } from 'react-router';
 import { motion } from 'framer-motion';
 import './partSignOut.css';
 import { Link } from 'react-router-dom';
-
+import signOutInput  from '../components/signOutInput';
+import saveToJson from '../components/saveToJson';
 
 // make a functions that will handle the input feilds
 
-const signOutInput = (index) =>{
-    //const[verifed, setVerifed] = useState(false);
-    //const [showVerfiy, setShowVerfiy] = useState(false);
-    
-    return (
-        
-            <motion.form className="signOut" key={index}>
-                <input type="text" placeholder="Part Name" />
-                <input type="text" placeholder="Part Size"/>
-                <input type="text" placeholder="Part Amount"/>
-                <input type="text" placeholder="Initials"/>
-                <motion.button className="material-symbols-outlined" style={{background:'green',scale:.75, borderRadius:90}} whileHover={{scale:1.1}} whileTap={{scale:0.85}} onClick={() => {
-                    setShowVerfiy(true);
-                }}>
-                    done
-                </motion.button>
-                {/*showVerfiy ? 
-                    <motion.div className="verify" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
-                        {/* ask for password and username }
-                        <input type="text" placeholder="Username"/>
-                    </motion.div>
-                 :null*/}
-            </motion.form>
-            
-    );
-};
 
 function PartSignOut() {
-    const [feildsArray, setFeildsArray] = useState([signOutInput(0)])
+    const [showVerfiy, setShowVerfiy] = useState(false);
+    const [verfiyWhich, setVerfiyWhich] = useState(null);
+    const [verfiyData, setVerfiyData] = useState({});
     const {routeID} = useParams();
-    
     const [key, setKeys] = useState(1);
+
+
+    
+    
+    
+    
+    
+    const [feildsArray, setFeildsArray] = useState([signOutInput(0,  () => setShowVerfiy(!showVerfiy), (index) => setVerfiyWhich(index), (data) => setVerfiyData(data))]);
+
     const handleClick = () => {
       
-        setFeildsArray([...feildsArray, signOutInput(key)]);
+        setFeildsArray([...feildsArray, signOutInput(key,  () => setShowVerfiy(true))]);
         setKeys(key + 1);
        
     };
+
     const handleRemove = (index) => {
-        let toRemove = feildsArray[index];
-        const newFeildsArray = [...feildsArray];
-        newFeildsArray.forEach(feild => {
-            if(feild.key === toRemove.key){
-                console.log(newFeildsArray.indexOf(feild));
-                newFeildsArray.splice(newFeildsArray.indexOf(feild), 1);
-                setFeildsArray(newFeildsArray);
-            }
-        });
-    };
+        const newFeildsArray = feildsArray.filter((feild, i) => i !== index);
+        setFeildsArray(newFeildsArray);
+      };
+
+    
     
 
 
@@ -84,7 +65,13 @@ function PartSignOut() {
                 </motion.span>)}
             </motion.div>
             
+            {
+                    showVerfiy ? 
 
+                    
+                    saveToJson(verfiyData)
+                    : null
+            }
 
         </div>
     );
