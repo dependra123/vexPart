@@ -1,14 +1,14 @@
 import React,{useRef} from 'react';
-
+import  WriteTOdb  from '../../firebase';
 import { motion } from 'framer-motion';
 
 
 
-const  signOutInput= (index, setShowVerfiy, setVerfiyWhich, setData) => {
-    const input1Ref = useRef(null);
-    const input2Ref = useRef(null);
-    const input3Ref = useRef(null);
-    const input4Ref = useRef(null);
+const  signOutInput= (index, setShowVerfiy, ref1, ref2,ref3,ref4) => {
+    const input1Ref = ref1;
+    const input2Ref = ref2;
+    const input3Ref = ref3;
+    const input4Ref = ref4;
 
     let data = {
         partName: '',
@@ -27,12 +27,7 @@ const  signOutInput= (index, setShowVerfiy, setVerfiyWhich, setData) => {
                 <motion.button className="material-symbols-outlined" onClick={(e) => {
                     e.preventDefault();
                     setShowVerfiy();
-                    setVerfiyWhich(index);
-                    data.partName = input1Ref.current.value;
-                    data.partSize = input2Ref.current.value;
-                    data.partAmount = input3Ref.current.value;
-                    data.initials = input4Ref.current.value;
-                    setData(data);
+                    WriteTOdb();
 
 
                  }} style={{background:'green',scale:.75, borderRadius:90}} whileHover={{scale:1.1}} whileTap={{scale:0.85}}>

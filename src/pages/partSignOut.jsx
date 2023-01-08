@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import { useParams } from 'react-router';
 import { motion } from 'framer-motion';
 import './partSignOut.css';
@@ -11,22 +11,14 @@ import saveToJson from '../components/saveToJson';
 
 function PartSignOut() {
     const [showVerfiy, setShowVerfiy] = useState(false);
-    const [verfiyWhich, setVerfiyWhich] = useState(null);
-    const [verfiyData, setVerfiyData] = useState({});
+    
     const {routeID} = useParams();
     const [key, setKeys] = useState(1);
-
-
-    
-    
-    
-    
-    
-    const [feildsArray, setFeildsArray] = useState([signOutInput(0,  () => setShowVerfiy(!showVerfiy), (index) => setVerfiyWhich(index), (data) => setVerfiyData(data))]);
+    const [feildsArray, setFeildsArray] = useState([signOutInput(0,  () => setShowVerfiy(!showVerfiy), useRef(),useRef(),useRef(),useRef())]);
 
     const handleClick = () => {
       
-        setFeildsArray([...feildsArray, signOutInput(key,  () => setShowVerfiy(true))]);
+        setFeildsArray([...feildsArray, signOutInput(0,  () => setShowVerfiy(!showVerfiy))]);
         setKeys(key + 1);
        
     };
@@ -56,7 +48,8 @@ function PartSignOut() {
                 {feildsArray.map((feild, index) =>
                   <motion.span key={index} animate={{y:-5}} transition={{type:'spring', damping:'7'}} initial={{y:-5,opacity:0.2}} whileInView={{y:0, opacity:1}} exit={{opacity:0}} className="feildSpan">
                     <motion.button onClick={() =>{
-                        handleRemove(index);
+                        setFeildsArray([...feildsArray, signOutInput(0,  () => setShowVerfiy(!showVerfiy), useRef(),useRef(),useRef(),useRef())]);
+                        setKeys(key + 1);
                         console.log("index: "+ index.toString());
                     }} style={{scale:0.6, borderRadius:60, background:'#B0272B'}} className="material-symbols-outlined" whileHover={{scale:.8, borderRadius:90, background:'#FF0000'}} whileTap={{scale:.5}}>
                         close 
@@ -67,9 +60,9 @@ function PartSignOut() {
             
             {
                     showVerfiy ? 
-
+                    <div></div>
                     
-                    saveToJson(verfiyData)
+                    // saveToJson(verfiyData)
                     : null
             }
 
