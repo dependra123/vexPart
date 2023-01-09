@@ -1,6 +1,6 @@
 import { initializeApp  } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, addDoc, getDocs } from "firebase/firestore"; 
 
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,22 +19,39 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+let currTeam = null;
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-const WriteTOdb = async () => {
-    try {
-        const docRef = await addDoc(collection(db, "users"), {
-          first: "Ada",
-          last: "Lovelace",
-          born: 1815
-        });
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-      }
+const collectInput = (team) => {
+  currTeam = team;
 };
 
+const WriteTOdb = async (data) => {
+  
+  try {
+      const docRef = await addDoc(collection(db, currTeam), {
+        data
+
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+};
+
+const getData = async () => {
+  let retrivedData = [];
+  const querySnapshot = await getDocs(collection(db, currTeam));
+
+  querySnapshot.forEach((doc) => {
+    // doc.data() is never undefined for query doc snapshots
+    retrivedData.push(doc.data());
+  });
+  return retrivedData;
+};
 
 export default WriteTOdb;
+export { collectInput, getData };
