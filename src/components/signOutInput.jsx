@@ -12,12 +12,24 @@ function  signOutInput(index, showVerify, team, loadedInput = null) {
     const input3Ref = React.createRef();
     const input4Ref = React.createRef();
     
-    // if there is data in the loadedInput object then set the input feilds to that data
-    
+    // if there is data in the loadedInput object then set the input feilds to that data 
 
     console.log(team);
     
-
+    const setPlaceHolder = (placeDefault, index) => {
+        let value = "";
+        
+        if(loadedInput !== null){
+            if(index === 1){value = loadedInput.partName};
+            if(index === 2){value = loadedInput.partSize};
+            if(index === 3){value = loadedInput.partAmount};
+            if(index === 4){value = loadedInput.initials};
+            console.log(value);
+            return value;
+        }
+        return placeDefault;
+    };
+    
     collectInput(team);
 
     let data = {
@@ -33,11 +45,11 @@ function  signOutInput(index, showVerify, team, loadedInput = null) {
         
             <>
             <motion.form className="signOut" key={index}>
-                <input type="text" placeholder="Part Name" ref={input1Ref} />
-                <input type="text" placeholder="Part Size "ref={input2Ref} />
-                <input type="text" placeholder="Part Amount" ref={input3Ref}   />
-                <input type="text" placeholder="Initials" ref={input4Ref} />
-                <motion.button className="material-symbols-outlined" style={{background:'green',scale:.75, borderRadius:90}} whileHover={{scale:1.1}} whileTap={{scale:0.85}} onClick={
+                <input type="text" placeholder={setPlaceHolder("Part Name", 1)} ref={input1Ref} disabled = {(loadedInput ===null) ? false : true} />
+                <input type="text" placeholder={setPlaceHolder("Part Size", 2)} ref={input2Ref} disabled = {(loadedInput ===null) ? false : true} />
+                <input type="text" placeholder={setPlaceHolder("Part Amount", 3)} ref={input3Ref} disabled = {(loadedInput ===null) ? false : true} />
+                <input type="text" placeholder={setPlaceHolder("Initials", 4)} ref={input4Ref} disabled = {(loadedInput ===null) ? false : true} />
+                {(loadedInput ===null) ? <motion.button className="material-symbols-outlined" style={{background:'green',scale:.75, borderRadius:90}} whileHover={{scale:1.1}} whileTap={{scale:0.85}} onClick={
                     (e)=>{
                         e.preventDefault();
                         data.partName = input1Ref.current.value;
@@ -59,7 +71,9 @@ function  signOutInput(index, showVerify, team, loadedInput = null) {
                     }
                 }>
                     done
-                </motion.button>
+                </motion.button> : null}
+                
+                
                 
             </motion.form>  
             
