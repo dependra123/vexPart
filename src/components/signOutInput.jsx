@@ -11,6 +11,9 @@ function  signOutInput(index, showVerify, team, loadedInput = null) {
     const input2Ref = React.createRef();
     const input3Ref = React.createRef();
     const input4Ref = React.createRef();
+   
+
+    
     
     // if there is data in the loadedInput object then set the input feilds to that data 
 
